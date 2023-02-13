@@ -1,12 +1,21 @@
-import Node from 'components/atoms/Node';
 import React from 'react';
+import useNodes from 'hooks/useNodes';
+import Node from 'components/atoms/Node';
+import * as s from './style';
 
 const DrawingPage = () => {
+  const { nodes, setNodes } = useNodes();
+
   const temp = 0;
   return (
-    <div>
+    <s.DrawingPageWrapper>
       <h1>This is Drawing Page</h1>
-    </div>
+      <s.DrawingPaper>
+        {nodes.map((node) => (
+          <Node key={node.data.id} structure={node.structure} data={node.data} />
+        ))}
+      </s.DrawingPaper>
+    </s.DrawingPageWrapper>
   );
 };
 
