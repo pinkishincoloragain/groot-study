@@ -1,0 +1,24 @@
+{
+  "data": {
+    "nodes": [
+      {
+        "id": 0,
+        "value": "defaultNode1",
+        "img": null,
+        "links": [],
+        "parentNodeId": null,
+        "isVisible": true,
+        "children": [1]
+      },
+      {
+        "id": "1",
+        "value": "defaultNode2",
+        "img": null,
+        "links": [],
+        "parentNodeId": 1,
+        "isVisible": true,
+        "children": []
+      }
+    ]
+  }
+}
