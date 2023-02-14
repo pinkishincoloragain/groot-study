@@ -1,7 +1,6 @@
 import React from 'react';
-import useNodes from 'hooks/useNodes';
-import { NodeData } from 'types/node';
 import * as s from './style';
+import { NodeData } from 'types/mindNode';
 
 const Node = ({ structure, data }: NodeData) => {
   console.log(structure, data);
