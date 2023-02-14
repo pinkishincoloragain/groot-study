@@ -1,13 +1,13 @@
 import React from 'react';
-import * as s from './style';
 import { NodeData } from 'types/mindNode';
+import * as s from './style';
 
-const Node = ({ structure, data }: NodeData) => {
-  console.log(structure, data);
+const Node = ({ id, structure, data }: NodeData) => {
+  console.log(id, structure, data);
 
   return (
     <div>
-      <s.NodeWrapper>{data.id}</s.NodeWrapper>
+      <s.NodeWrapper>{id}</s.NodeWrapper>
     </div>
   );
 };

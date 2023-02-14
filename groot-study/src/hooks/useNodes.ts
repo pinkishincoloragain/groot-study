@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NodeData } from 'types/mindNode';
+import initNodes from 'utils/initNodes';
 
 const useNodes = () => {
   const [nodes, setNodes] = useState<NodeData[]>([]);
 
-  if (nodes.length === 0) {
-    // setNodes(initNodes());
-  }
+  useEffect(() => {
+    setNodes(initNodes());
+  }, []);
 
   return { nodes, setNodes };
 };

@@ -1,23 +1,25 @@
-export type nodeId = string;
+export type nodeId = number;
 export type parentNodeId = string | null;
 export type isVisible = boolean;
 export type children = nodeId[];
+export type value = string | null;
+export type img = string | null;
+export type links = string[] | null;
 
 export interface structure {
-  id: nodeId;
   parentNodeId: parentNodeId;
   isVisible: isVisible;
   children: children;
 }
 
 export interface data {
-  id: string;
-  value: string | null;
-  img: string | null;
-  links: string[] | null;
+  value: value;
+  img: img;
+  links: links;
 }
 
 export interface NodeData {
+  id: nodeId;
   structure: structure;
   data: data;
 }
