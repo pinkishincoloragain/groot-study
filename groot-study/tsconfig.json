@@ -32,17 +32,19 @@
 
     /* 모듈 분석 옵션 */
     "moduleResolution": "node", // 'node' (Node.js) 방법으로 모듈 분석
+    "resolveJsonModule": true,
     "baseUrl": "./src", // 모듈이 기본적으로 위치한 디렉토리 설정
     "paths": {
       "@api/*": ["api/*"],
-      "@components/*": ["src/components/*"],
+      "@components/*": ["components/*"],
       "@constants/*": ["src/constants/*"],
+      "@assets/*": ["assets/*"],
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
       "@public/*": ["public/*"],
-      // "@types/*": ["src/types/*"]
+      "@types/*": ["src/types/*"]
     },
     "esModuleInterop": true, // 모든 import에 대한  CommonJS와 ES 모듈 간의 상호 운용성을 설정
 

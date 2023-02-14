@@ -3,21 +3,29 @@
     "nodes": [
       {
         "id": 0,
-        "value": "defaultNode1",
-        "img": null,
-        "links": [],
-        "parentNodeId": null,
-        "isVisible": true,
-        "children": [1]
+        "structure": {
+          "parentNodeId": null,
+          "isVisible": true,
+          "children": [1]
+        },
+        "data": {
+          "value": "defaultNode1",
+          "img": null,
+          "links": []
+        }
       },
       {
-        "id": "1",
-        "value": "defaultNode2",
-        "img": null,
-        "links": [],
-        "parentNodeId": 1,
-        "isVisible": true,
-        "children": []
+        "id": 1,
+        "structure": {
+          "parentNodeId": null,
+          "isVisible": true,
+          "children": [1]
+        },
+        "data": {
+          "value": "defaultNode1",
+          "img": null,
+          "links": []
+        }
       }
     ]
   }
