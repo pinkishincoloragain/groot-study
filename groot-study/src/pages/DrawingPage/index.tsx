@@ -1,5 +1,5 @@
 import React from 'react';
-import Node from 'components/atoms/Node';
+import Node from 'components/molecules/Node';
 import useNodes from 'hooks/useNodes';
 import * as s from './style';
 

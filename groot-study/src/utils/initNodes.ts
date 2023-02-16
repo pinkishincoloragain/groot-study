@@ -12,7 +12,8 @@ const sampleData = {
           children: [1],
         },
         data: {
-          value: 'defaultNode1',
+          title: 'defaultNodeTitle0',
+          value: 'defaultNode0',
           img: null,
           links: [],
         },
@@ -22,9 +23,10 @@ const sampleData = {
         structure: {
           parentNodeId: null,
           isVisible: true,
-          children: [1],
+          children: [],
         },
         data: {
+          title: 'defaultNodeTitle1',
           value: 'defaultNode1',
           img: null,
           links: [],
