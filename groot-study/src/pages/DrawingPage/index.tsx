@@ -11,7 +11,7 @@ const DrawingPage = () => {
     <s.DrawingPageWrapper>
       <h1>This is Drawing Page</h1>
       <s.DrawingPaper>
-        {nodes.map((node) => (
+        {nodes.map(node => (
           <Node key={node.id} id={node.id} structure={node.structure} data={node.data} />
         ))}
       </s.DrawingPaper>

@@ -1,38 +1,29 @@
-import React from 'react';
 import styled from 'styled-components';
 
-interface Wrapper extends React.HTMLAttributes<HTMLDivElement> {
-  selected: boolean;
-}
-
-export const Wrapper = styled.div<Wrapper>`
-  background-color: ${(props) => (props.selected ? 'yellow' : 'white')};
-`;
-
+// NodeWrapper with props: selected
 export const NodeWrapper = styled.div<{ selected: boolean }>`
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    // alignItems: 'center',
-    minWidth: '120px',
-    padding: '10px',
-    border: '1px solid black',
-    borderRadius: '5px',
-    margin: '10px',
-    backgroundColor: ${(props) => (props.selected ? 'yellow' : 'white')},
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  border: 2px solid black;
+  border-radius: 12px;
+  margin: 12px;
+  padding: 12px;
+  background-color: ${props => (props.selected ? 'lightgray' : 'white')};
 
-    '&:hover': {
-      backgroundColor: 'red',
-    },
+  &:hover {
+    background-color: lightgray;
+  }
 
-    '&:active': {
-      backgroundColor: 'blue',
-    },
+  &:focus {
+    outline: none;
+  }
 
-    '&:focus': {
-      backgroundColor: 'green',
-    },
-  
+  &:active {
+    background-color: gray;
+  }
 `;
 
 export const NodeContent = styled.div({
