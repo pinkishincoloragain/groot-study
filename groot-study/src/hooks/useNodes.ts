@@ -1,9 +1,13 @@
-import { useState } from 'react';
-import sampleData from '../assets/sampledata.json';
+import { useEffect, useState } from 'react';
+import { NodeData } from 'types/mindNode';
+import initNodes from 'utils/initNodes';
 
 const useNodes = () => {
-  const [nodes, setNodes] = useState(sampleData.data.nodes);
-  const [structureNodes, setStructureNodes] = useState(sampleData.data.nodes);
+  const [nodes, setNodes] = useState<NodeData[]>([]);
+
+  useEffect(() => {
+    setNodes(initNodes());
+  }, []);
 
   return { nodes, setNodes };
 };
