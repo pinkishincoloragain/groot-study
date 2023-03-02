@@ -1,14 +1,18 @@
 import React from 'react';
-import { NodeData } from 'types/mindNode';
+import { data, structure } from 'types/mindNode';
 import * as s from './style';
 
-const Node = ({ id, structure, data }: NodeData) => {
-  console.log(id, structure, data);
+export interface NodeProps {
+  id: number;
+  structure: structure;
+  data: data;
+  selected: boolean;
+  setSelectedNode: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const [selected, setSelected] = React.useState<boolean>(false);
-
+const Node = ({ id, structure, data, selected, setSelectedNode }: NodeProps) => {
   const handleClick = () => {
-    setSelected(!selected);
+    setSelectedNode(id.toString());
   };
 
   return (
