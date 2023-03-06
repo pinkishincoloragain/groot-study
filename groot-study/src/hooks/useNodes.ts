@@ -5,11 +5,35 @@ import initNodes from 'utils/initNodes';
 const useNodes = () => {
   const [nodes, setNodes] = useState<NodeData[]>([]);
 
+  const generateNewNode = (parentId: number) => ({
+    id: nodes.length + 1,
+    structure: {
+      parentNodeId: parentId,
+      isVisible: true,
+      children: [],
+    },
+    data: {
+      title: null,
+      value: null,
+      img: null,
+      links: null,
+    },
+  });
+
+  const addNewNode = (parentId: number) => {
+    const node = generateNewNode(parentId);
+    setNodes(prevNodes => [...prevNodes, node]);
+  };
+
+  const deleteNode = (id: number) => {
+    setNodes(prevNodes => prevNodes.filter(node => node.id !== id));
+  };
+
   useEffect(() => {
     setNodes(initNodes());
   }, []);
 
-  return { nodes, setNodes };
+  return { nodes, addNewNode, deleteNode };
 };
 
 export default useNodes;

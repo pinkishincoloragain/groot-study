@@ -1,5 +1,5 @@
 export type nodeId = number;
-export type parentNodeId = string | null;
+export type parentNodeId = number | null;
 export type isVisible = boolean;
 export type children = nodeId[];
 export type title = string | null;

@@ -33,6 +33,11 @@ export const NodeContent = styled.div({
   // alignItems: 'center',
 });
 
+export const NodeButton = styled.button({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
 export const NodeValue = styled.div({
   display: 'flex',
   flexDirection: 'column',
