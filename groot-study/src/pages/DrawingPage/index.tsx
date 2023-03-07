@@ -5,15 +5,18 @@ import useNodes from 'hooks/useNodes';
 import * as s from './style';
 
 const DrawingPage = () => {
-  const { nodes, addNewNode } = useNodes();
+  const { nodes, addNewNode, deleteNode } = useNodes();
   const [pressedKey, setPressedKey] = React.useState<string>('');
-  const [keyInfo, setKeyInfo] = React.useState<KeyboardEvent | null>(null);
+  // const [keyInfo, setKeyInfo] = React.useState<KeyboardEvent | null>(null);
   const [selectedNode, setSelectedNode] = React.useState<number>(0);
-  console.log(keyInfo);
+  const [nodeLog, setNodeLog] = React.useState<string[]>([]);
+
+  // console.log(keyInfo);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     setPressedKey(e.key);
-    displayKeyInfo(e);
+    handleKeyInfo(e);
+    setNodeLog([...nodeLog, `log:${nodeLog.length} key: ${e.key}, code: ${e.code}`]);
     e.stopPropagation();
   };
 
@@ -22,16 +25,21 @@ const DrawingPage = () => {
     e.preventDefault();
   };
 
-  const displayKeyInfo = (e: KeyboardEvent) => {
+  const handleKeyInfo = (e: KeyboardEvent) => {
     if (e.key === 'Tab') {
       addNewNode(selectedNode);
+      e.preventDefault();
     }
 
     if ((e.ctrlKey && e.key === 'z') || (e.metaKey && e.key === 'z')) {
       alert('ctrl + z');
     }
-    console.log(e);
-    setKeyInfo(e);
+
+    if (e.key === 'Backspace') {
+      setSelectedNode(selectedNode - 1);
+      deleteNode(selectedNode);
+    }
+    // setKeyInfo(e);
   };
 
   // const NodeWithUtil = withUtil(Node);
@@ -40,6 +48,18 @@ const DrawingPage = () => {
     <s.DrawingPageWrapper tabIndex={0} onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
       <h1>This is Drawing Page</h1>
       <h2>Pressed key: {pressedKey}</h2>
+      <h2>Node Log: </h2>
+      <s.LogWrapper>
+        {nodeLog.map((log, index) => {
+          const index2 = index;
+          return (
+            <s.Log key={index2 + log}>
+              {log}
+              <br />
+            </s.Log>
+          );
+        })}
+      </s.LogWrapper>
       <h2>Selected Node: {selectedNode}</h2>
       <s.DrawingPaper>
         {nodes.map(node => (

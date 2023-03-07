@@ -24,6 +24,9 @@ const Node = ({ id, structure, data, selected, setSelectedNode }: NodeProps) => 
         isVisible: {structure.isVisible.toString()}
       </s.NodeContent>
       <s.NodeContent suppressContentEditableWarning contentEditable>
+        ParentId: {structure.parentNodeId?.toString()}
+      </s.NodeContent>
+      <s.NodeContent suppressContentEditableWarning contentEditable>
         children: {structure.children}
       </s.NodeContent>
       <s.NodeContent suppressContentEditableWarning contentEditable>

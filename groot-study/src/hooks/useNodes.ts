@@ -21,8 +21,11 @@ const useNodes = () => {
   });
 
   const addNewNode = (parentId: number) => {
-    const node = generateNewNode(parentId);
-    setNodes(prevNodes => [...prevNodes, node]);
+    const newNode = generateNewNode(parentId);
+    const resNodes = [...nodes, newNode];
+
+    resNodes.find(node => node.id === parentId)?.structure.children.push(newNode.id);
+    setNodes(resNodes);
   };
 
   const deleteNode = (id: number) => {
