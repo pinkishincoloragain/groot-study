@@ -15,6 +15,8 @@ const Node = ({ id, structure, data, selected, setSelectedNode }: NodeProps) => 
     setSelectedNode(id);
   };
 
+  console.log(data, structure);
+
   return (
     <s.NodeWrapper selected={selected} onClick={handleClick}>
       <s.NodeValue suppressContentEditableWarning contentEditable>
@@ -27,16 +29,7 @@ const Node = ({ id, structure, data, selected, setSelectedNode }: NodeProps) => 
         ParentId: {structure.parentNodeId?.toString()}
       </s.NodeContent>
       <s.NodeContent suppressContentEditableWarning contentEditable>
-        children: {structure.children}
-      </s.NodeContent>
-      <s.NodeContent suppressContentEditableWarning contentEditable>
-        img: {data.img}
-      </s.NodeContent>
-      <s.NodeContent suppressContentEditableWarning contentEditable>
-        links: {data.links}
-      </s.NodeContent>
-      <s.NodeContent suppressContentEditableWarning contentEditable>
-        value: {data.value}
+        children: {structure.children.toString()}
       </s.NodeContent>
     </s.NodeWrapper>
   );

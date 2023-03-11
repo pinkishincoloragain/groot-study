@@ -49,7 +49,7 @@ const DrawingPage = () => {
       <h1>This is Drawing Page</h1>
       <h2>Pressed key: {pressedKey}</h2>
       <h2>Node Log: </h2>
-      <s.LogWrapper>
+      {/* <s.LogWrapper>
         {nodeLog.map((log, index) => {
           const index2 = index;
           return (
@@ -59,7 +59,7 @@ const DrawingPage = () => {
             </s.Log>
           );
         })}
-      </s.LogWrapper>
+      </s.LogWrapper> */}
       <h2>Selected Node: {selectedNode}</h2>
       <s.DrawingPaper>
         {nodes.map(node => (

@@ -3,6 +3,10 @@ import { NodeData } from 'types/mindNode';
 import initNodes from 'utils/initNodes';
 
 const useNodes = () => {
+  useEffect(() => {
+    setNodes(initNodes());
+  }, []);
+
   const [nodes, setNodes] = useState<NodeData[]>([]);
 
   const generateNewNode = (parentId: number) => ({
@@ -29,12 +33,14 @@ const useNodes = () => {
   };
 
   const deleteNode = (id: number) => {
+    // const resNodes = [...nodes];
+    // const nodeToDelete = resNodes.find(node => node.id === id);
+    // const parentNode = resNodes.find(node => node.id === nodeToDelete?.structure.parentNodeId);
+
+    //bfs
+
     setNodes(prevNodes => prevNodes.filter(node => node.id !== id));
   };
-
-  useEffect(() => {
-    setNodes(initNodes());
-  }, []);
 
   return { nodes, addNewNode, deleteNode };
 };
