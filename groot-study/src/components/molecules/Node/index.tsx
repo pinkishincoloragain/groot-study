@@ -1,24 +1,36 @@
 import React from 'react';
-import { NodeData } from 'types/mindNode';
+import { data, structure } from 'types/mindNode';
 import * as s from './style';
 
-const Node = ({ id, structure, data }: NodeData) => {
-  console.log(id, structure, data);
+export interface NodeProps {
+  id: number;
+  structure: structure;
+  data: data;
+  selected: boolean;
+  setSelectedNode: React.Dispatch<React.SetStateAction<number>>;
+}
 
-  const [selected, setSelected] = React.useState<boolean>(false);
-
+const Node = ({ id, structure, data, selected, setSelectedNode }: NodeProps) => {
   const handleClick = () => {
-    setSelected(!selected);
+    setSelectedNode(id);
   };
+
+  console.log(data, structure);
 
   return (
     <s.NodeWrapper selected={selected} onClick={handleClick}>
-      <s.NodeValue>id: {id}</s.NodeValue>
-      <s.NodeContent>isVisible: {structure.isVisible.toString()}</s.NodeContent>
-      <s.NodeContent>children: {structure.children}</s.NodeContent>
-      <s.NodeContent>img: {data.img}</s.NodeContent>
-      <s.NodeContent>links: {data.links}</s.NodeContent>
-      <s.NodeContent>value: {data.value}</s.NodeContent>
+      <s.NodeValue suppressContentEditableWarning contentEditable>
+        id: {id}
+      </s.NodeValue>
+      <s.NodeContent suppressContentEditableWarning contentEditable>
+        isVisible: {structure.isVisible.toString()}
+      </s.NodeContent>
+      <s.NodeContent suppressContentEditableWarning contentEditable>
+        ParentId: {structure.parentNodeId?.toString()}
+      </s.NodeContent>
+      <s.NodeContent suppressContentEditableWarning contentEditable>
+        children: {structure.children.toString()}
+      </s.NodeContent>
     </s.NodeWrapper>
   );
 };
