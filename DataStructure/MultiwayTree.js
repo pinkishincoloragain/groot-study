@@ -1,6 +1,6 @@
 class MultiwayTreeNode {
-  constructor(value, children = []) {
-    this.value = value;
+  constructor(data, children = []) {
+    this.data = data;
     this.children = children;
   }
 
@@ -19,13 +19,13 @@ class MultiwayTree {
   }
 
   // Add a node to the tree
-  add(value, parentValue) {
-    const newNode = new MultiwayTreeNode(value);
+  add(data, parentData) {
+    const newNode = new MultiwayTreeNode(data);
     if (!this.root) {
       this.root = newNode;
     } else {
       this.traverseBFS(node => {
-        if (node.value === parentValue) {
+        if (node.data === parentData) {
           node.addChild(newNode);
         }
       });
@@ -33,16 +33,16 @@ class MultiwayTree {
   }
 
   // Remove a node from the tree
-  remove(value) {
+  remove(data) {
     if (!this.root) {
       return;
     }
-    if (this.root.value === value) {
+    if (this.root.data === data) {
       this.root = null;
       return;
     }
     this.traverseBFS(node => {
-      node.children = node.children.filter(c => c.value !== value);
+      node.children = node.children.filter(c => c.data !== data);
     });
   }
 
@@ -69,13 +69,13 @@ class MultiwayTree {
     traverse(this.root);
   }
 
-  find(value) {
+  find(data) {
     if (!this.root) {
       return null;
     }
     let found = null;
     this.traverseBFS(node => {
-      if (node.value === value) {
+      if (node.data === data) {
         found = node;
       }
     });
@@ -84,19 +84,3 @@ class MultiwayTree {
 }
 
 export default MultiwayTree;
-
-// Usage
-
-const tree = new MultiwayTree();
-tree.add(1, null); // add the root node
-tree.add(2, 1); // add a child node to the root
-tree.add(3, 1); // add another child node to the root
-tree.add(4, 2); // add a child node to the first child of the root
-tree.add(5, 3); // add a child node to the second child of the root
-
-tree.find(4); // find the node with value 4
-
-tree.traverseDFS(node => console.log(node.value)); // Output: 1 2 4 3 5
-tree.remove(3); // remove the second child of the root
-
-tree.traverseDFS(node => console.log(node.value)); // Output: 1 2 4 5

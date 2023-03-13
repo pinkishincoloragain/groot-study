@@ -62,6 +62,10 @@ class MultiLinkedList {
   getSize() {
     return this.size;
   }
+
+  traverseDFS(callback) {
+    
+  }
 }
 
 export default MultiLinkedList;
