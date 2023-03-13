@@ -1,52 +1,65 @@
-class MultiwayTreeNode {
-  constructor(data, children = []) {
+class Node {
+  constructor(data, children = [], id) {
     this.data = data;
     this.children = children;
+    this.id = id;
   }
 
   addChild(child) {
     this.children.push(child);
   }
 
-  removeChild(child) {
-    this.children = this.children.filter(c => c !== child);
+  removeChild(childId) {
+    this.children = this.children.filter(c => c.id !== childId);
   }
 }
 
 class MultiwayTree {
   constructor(root = null) {
     this.root = root;
+    // this.map = new Map();
   }
 
-  // Add a node to the tree
-  add(data, parentData) {
-    const newNode = new MultiwayTreeNode(data);
-    if (!this.root) {
-      this.root = newNode;
+  /**
+   *
+   * @param {string} nodeData
+   * @param {string} parentNodeId
+   *
+   * @returns {void}
+   *
+   */
+  add(nodeData, parentNodeId) {
+    if (parentNodeId === null) {
+      this.root = new Node(nodeData, [], "0");
     } else {
-      this.traverseBFS(node => {
-        if (node.data === parentData) {
-          node.addChild(newNode);
-        }
-      });
+      const parentNode = this.findById(parentNodeId);
+      const targetIdx = parentNode?.children.length || 0;
+      const newNode = new Node(nodeData, [], `${parentNodeId}-${targetIdx}`);
+      if (!parentNode) {
+        return;
+      }
+      parentNode.addChild(newNode);
     }
   }
 
-  // Remove a node from the tree
-  remove(data) {
+  /**
+   *
+   * @param {string} nodeId
+   * @returns {void}
+   */
+  remove(nodeId) {
     if (!this.root) {
       return;
     }
-    if (this.root.data === data) {
+    if (this.root.id === nodeId) {
       this.root = null;
       return;
     }
     this.traverseBFS(node => {
-      node.children = node.children.filter(c => c.data !== data);
+      node.children = node.children.filter(c => c.id !== nodeId);
     });
   }
 
-  // Traverse the tree using breadth-first search
   traverseBFS(callback) {
     const queue = [this.root];
     while (queue.length > 0) {
@@ -58,7 +71,6 @@ class MultiwayTree {
     }
   }
 
-  // Traverse the tree using depth-first search
   traverseDFS(callback) {
     function traverse(node) {
       callback(node);
@@ -69,13 +81,38 @@ class MultiwayTree {
     traverse(this.root);
   }
 
-  find(data) {
+  /**
+   *
+   * @param {string} id
+   * @returns {Node | null}
+   */
+
+  find(id) {
     if (!this.root) {
       return null;
     }
     let found = null;
     this.traverseBFS(node => {
-      if (node.data === data) {
+      if (node.id === id) {
+        found = node;
+      }
+    });
+    return found;
+  }
+
+  /**
+   *
+   * @param {string} nodeId
+   *
+   * @returns {Node}
+   */
+  findById(nodeId) {
+    if (!this.root) {
+      return null;
+    }
+    let found = null;
+    this.traverseBFS(node => {
+      if (node.id === nodeId) {
         found = node;
       }
     });
