@@ -83,28 +83,9 @@ class MultiwayTree {
 
   /**
    *
-   * @param {string} id
-   * @returns {Node | null}
-   */
-
-  find(id) {
-    if (!this.root) {
-      return null;
-    }
-    let found = null;
-    this.traverseBFS(node => {
-      if (node.id === id) {
-        found = node;
-      }
-    });
-    return found;
-  }
-
-  /**
-   *
    * @param {string} nodeId
    *
-   * @returns {Node}
+   * @returns {Node | null}
    */
   findById(nodeId) {
     if (!this.root) {
